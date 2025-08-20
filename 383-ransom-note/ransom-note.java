@@ -1,22 +1,14 @@
 class Solution {
     public boolean canConstruct(String ransomNote, String magazine) {
-       
-        if (ransomNote.length() > magazine.length()) {
+        if (ransomNote.length() > magazine.length())
             return false;
-        }
-
-        Map<Character, Integer> charCounts = new HashMap<>();
-
-        for (char c : magazine.toCharArray()) {
-            charCounts.put(c, charCounts.getOrDefault(c, 0) + 1);
-        }
-
-        for (char c : ransomNote.toCharArray()) {
-            if (charCounts.getOrDefault(c, 0) > 0) {
-                charCounts.put(c, charCounts.get(c) - 1);
-            } else {
+        int[] alphabet = new int[26];
+        for (char a : ransomNote.toCharArray()) {
+            int i = magazine.indexOf(a, alphabet[a - 'a']);
+            if (i == -1) {
                 return false;
             }
+            alphabet[a - 'a'] = i + 1;
         }
         return true;
     }
