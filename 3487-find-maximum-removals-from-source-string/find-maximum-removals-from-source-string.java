@@ -5,16 +5,13 @@ class Solution {
         int[] target = new int[m];
         int[] dp = new int[n + 1];
 
-        // Mark target indices
         for (int i : targetIndices) {
             target[i] += 1;
         }
 
-        // Initialize DP array
         Arrays.fill(dp, Integer.MIN_VALUE);
         dp[n] = 0;
 
-        // Fill DP table
         for (int i = m - 1; i >= 0; i--) {
             for (int j = 0; j <= n; j++) {
                 dp[j] += target[i];
