@@ -1,5 +1,3 @@
-import java.util.*;
-
 class Solution {
     public int minimumTeachings(int totalLanguages, int[][] userLanguages, int[][] friendships) {
         Set<Integer> usersToTeach = new HashSet<>();
