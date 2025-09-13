@@ -1,23 +1,22 @@
 class Solution {
-
     public int maxFreqSum(String s) {
-        Map<Character, Integer> mp = new HashMap<>();
-        for (char ch : s.toCharArray()) {
-            mp.put(ch, mp.getOrDefault(ch, 0) + 1);
+        s=s.toLowerCase();
+        int arr[]=new int[26];
+        for(int i=0;i<s.length();i++){
+            char c = s.charAt(i);
+            arr[c-'a']++;
         }
-        int vowel = 0;
-        int consonant = 0;
-        for (char ch = 'a'; ch <= 'z'; ch++) {
-            if (isVowel(ch)) {
-                vowel = Math.max(vowel, mp.getOrDefault(ch, 0));
-            } else {
-                consonant = Math.max(consonant, mp.getOrDefault(ch, 0));
+        int vmax=0;
+        int cmax=0;
+        for(int i=0;i<arr.length;i++){
+            
+            if((i==0||i==4||i==8||i==14||i==20)&&arr[i]>vmax){
+                vmax=arr[i];
+            }
+            else if((i!=0&&i!=4&&i!=8&&i!=14&&i!=20)&&arr[i]>cmax){
+                cmax=arr[i];
             }
         }
-        return vowel + consonant;
-    }
-
-    private boolean isVowel(char c) {
-        return c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u';
+        return vmax+cmax;
     }
 }
