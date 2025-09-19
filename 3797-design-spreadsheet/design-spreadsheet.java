@@ -18,24 +18,20 @@ class Spreadsheet {
     }
 
     public int getValue(String formula) {
-        // Remove '=' from beginning
         formula = formula.substring(1);
 
-        // Split by '+'
         String[] operands = formula.split("\\+");
         String leftOperand = operands[0];
         String rightOperand = operands[1];
 
         int result = 0;
 
-        // Process left operand
         if (leftOperand.matches("\\d+")) {
             result += Integer.parseInt(leftOperand);
         } else {
             result += cellValues.getOrDefault(leftOperand, 0);
         }
 
-        // Process right operand
         if (rightOperand.matches("\\d+")) {
             result += Integer.parseInt(rightOperand);
         } else {
