@@ -1,18 +1,55 @@
-public class Solution {
+class Solution {
     public int maxFrequencyElements(int[] nums) {
-        int[] frequencies = new int[100];
-        for (int num : nums) {
-            frequencies[num - 1]++;
+        int n = nums.length;
+        int max = Integer.MIN_VALUE;
+        for(int i=0;i<n;i++) {
+            if(nums[i]>max) {
+                max = nums[i];
+            }
         }
-
-        Arrays.sort(frequencies);
-        int maxFreqIndex = frequencies.length - 1;
-        int totalFrequencies = frequencies[maxFreqIndex];
-
-        while (maxFreqIndex > 0 && frequencies[maxFreqIndex] == frequencies[maxFreqIndex - 1]) {
-            totalFrequencies += frequencies[maxFreqIndex];
-            maxFreqIndex--;
+        int[] arr = new int[max+1];
+        for(int i=0;i<n;i++) {
+            arr[nums[i]]++;
         }
-        return totalFrequencies;
+        int maxFreq = 0;
+        int count = 0;
+        for(int i=0;i<arr.length;i++) {
+            if(maxFreq<arr[i]) {
+                maxFreq = arr[i];
+                count = 1;
+            } else if (maxFreq == arr[i]) {
+                Math.max(maxFreq,++count);
+                //count++;
+            }
+
+        }
+        return count*maxFreq;
+        /*Map<Integer, Integer> countMap = new HashMap<>();
+        int initialCount = 1;
+        int maxCount = 0;
+        int ret = 0;
+        for(int i=0;i<nums.length;i++) {
+             if (countMap.containsKey(nums[i])) {
+                int count = countMap.get(nums[i]);
+                count++;
+                countMap.put(nums[i], count);
+                if (maxCount<count) {
+                    maxCount = count;
+                }
+             } else {
+                countMap.put(nums[i], initialCount);
+             }
+             
+        }
+        if (maxCount == 0) {
+            maxCount = 1;
+        }
+        for(Integer i : countMap.keySet()) {
+            if (maxCount == countMap.get(i)) {
+                ret += maxCount;
+            }
+        }
+        return ret;
+    }*/
     }
 }
