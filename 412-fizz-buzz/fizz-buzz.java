@@ -1,25 +1,21 @@
 class Solution {
     public List<String> fizzBuzz(int n) {
-        List <String> list = new ArrayList();
-        boolean is3, is5;
+        List<String> ans = new ArrayList<>();
 
-        for(int i = 1 ; i<=n ; i++){
-            is3 = i%3 == 0;
-            is5 = i%5 == 0;
-
-            if(is3 && is5){
-                list.add("FizzBuzz");
+        for(int i=1; i<=n; i++) {
+            if(i%3 ==0 && i%5==0) {
+                ans.add("FizzBuzz");
             }
-            else if(is3){
-                list.add("Fizz");
+            else if(i%3==0) {
+                ans.add("Fizz");
             }
-            else if(is5){
-                list.add("Buzz");
+            else if(i%5==0) {
+                ans.add("Buzz");
             }
-            else{
-                list.add(String.valueOf(i));
+            else {
+                ans.add(Integer.toString(i));
             }
         }
-        return list;
+        return ans;
     }
 }
